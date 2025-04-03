@@ -100,3 +100,22 @@ npm i -D prettier-plugin-organize-imports prettier-plugin-tailwindcss
   "prettier-plugin-tailwindcss"
 ]
 ```
+
+# 配置 Git hooks
+
+```bash
+npm i -D husky lint-staged @commitlint/cli @commitlint/config-conventional
+```
+
+- run
+
+```bash
+//生成 .husky 的文件夹
+npx husky install
+
+// 添加 hooks，会在 .husky 目录下生成一个 pre-commit 脚本文件
+.husky/pre-commit "npx --no-install lint-staged"
+
+// 添加 commit-msg
+.husky/commit-msg 'npx --no-install commitlint --edit "$1"'
+```
