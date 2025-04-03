@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "next dev --turbopack",
     "build": "next build",
+    "commit": "czg",
     "start": "next start",
     "lint": "eslint app --fix --ext .ts,.tsx,.js,.jsx --max-warnings 0"
   },
@@ -21,6 +22,8 @@
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "cz-git": "^1.11.1",
+    "czg": "^1.11.1",
     "eslint": "^9",
     "eslint-config-next": "15.2.4",
     "eslint-config-prettier": "^10.1.1",
