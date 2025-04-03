@@ -1,36 +1,102 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
-
-## Getting Started
-
-First, run the development server:
+# 初始化项目
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npx create-next-app@latest
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+# 配置 Prettier
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+npm i eslint-plugin-prettier prettier eslint-config-prettier -D
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 修改 eslint.config.mjs
 
-## Learn More
+```js
+const eslintConfig = [
+  ...compat.extends('next/core-web-vitals', 'next/typescript'),
+  ...compat.extends('plugin:prettier/recommended', 'eslint-config-prettier'),
+  ...compat.plugins('prettier'),
+  {
+    rules: {
+      '@typescript-eslint/no-explicit-any': ['off'], //允许使用any
+      '@typescript-eslint/ban-ts-comment': 'off', //允许使用@ts-ignore
+      '@typescript-eslint/no-non-null-assertion': 'off', //允许使用非空断言
+      '@typescript-eslint/no-var-requires': 'off', //允许使用CommonJS的写法
+      'no-console': [
+        //提交时不允许有console.log
+        'warn',
+        {
+          allow: ['warn', 'error'],
+        },
+      ],
+    },
+  },
+];
+```
 
-To learn more about Next.js, take a look at the following resources:
+## 新建 .prettierrc
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```js
+{
+  "endOfLine": "auto",
+  "printWidth": 120,
+  "semi": true,
+  "singleQuote": true,
+  "tabWidth": 2,
+  "trailingComma": "all",
+  "bracketSpacing": true
+}
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## 新建 .prettierignore
 
-## Deploy on Vercel
+```bash
+/.next/
+/node_modules
+.env*.local
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## 新增 npm scripts
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```bash
+"lint": "eslint src --fix --ext .ts,.tsx,.js,.jsx --max-warnings 0",
+```
+
+## 配置 VSCode
+
+`/.vscode/setting.json`
+
+```json
+{
+  "recommendations": [
+    "esbenp.prettier-vscode",
+    "dbaeumer.vscode-eslint",
+    "yzhang.markdown-all-in-one",
+    "PulkitGangwar.nextjs-snippets",
+    "styled-components.vscode-styled-components",
+    "bradlc.vscode-tailwindcss"
+  ],
+  "editor.codeActionsOnSave": {
+    "source.fixAll": "explicit"
+  }
+}
+```
+
+Prettier插件配置Print Width => 120
+
+## Prettier Plugins
+
+```bash
+npm i -D prettier-plugin-organize-imports prettier-plugin-tailwindcss
+```
+
+修改 `.prettierrc`
+
+```json
+...
+"plugins": [
+  "prettier-plugin-organize-imports",
+  "prettier-plugin-tailwindcss"
+]
+```
