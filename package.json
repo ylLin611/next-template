@@ -7,7 +7,9 @@
     "build": "next build",
     "commit": "czg",
     "start": "next start",
-    "lint": "eslint app --fix --ext .ts,.tsx,.js,.jsx --max-warnings 0"
+    "lint:lint-staged": "lint-staged",
+    "lint": "eslint app --fix --ext .ts,.tsx,.js,.jsx --max-warnings 0",
+    "prepare": "husky"
   },
   "dependencies": {
     "class-variance-authority": "^0.7.1",
@@ -42,8 +44,8 @@
     "typescript": "^5"
   },
   "lint-staged": {
-    "app/**/*.{js,jsx,ts,tsx,json}": [
-      "npm run lint",
+    "*.{js,jsx,ts,tsx}": [
+      "pnpm lint",
       "prettier --write"
     ]
   }
