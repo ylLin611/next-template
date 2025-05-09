@@ -110,17 +110,18 @@ npm i -D husky lint-staged @commitlint/cli @commitlint/config-conventional czg c
 - run
 
 ```bash
-//生成 .husky 的文件夹
-npx husky install
+# 生成 .husky 的文件夹
+pnpm exec husky init
 
-// 添加 hooks，会在 .husky 目录下生成一个 pre-commit 脚本文件
-.husky/pre-commit "npx --no-install lint-staged"
+# 修改 pre-commit
+pnpm lint:lint-staged
 
-// 添加 commit-msg
-.husky/commit-msg 'npx --no-install commitlint --edit "$1"'
+# 添加 commitlint
+echo "npx --no -- commitlint --edit \$1" > .husky/commit-msg
 ```
 
 ## commitlint.config.cjs
+
 ```js
 /** @type {import('cz-git').UserConfig} */
 module.exports = {
@@ -213,4 +214,24 @@ module.exports = {
   },
 };
 ```
+
 ## package.json
+
+- 配置 lint-staged
+
+```json
+...
+"scripts": {
+  "commit": "git add . && czg",
+  "czg": "czg",
+  "lint:lint-staged": "lint-staged"  
+}
+...
+"lint-staged": {
+  "*.{js,jsx,ts,tsx}": [
+    "pnpm lint",
+    "prettier --write"
+  ]
+}
+...
+```
