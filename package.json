@@ -5,7 +5,8 @@
   "scripts": {
     "dev": "next dev --turbopack",
     "build": "next build",
-    "commit": "czg",
+    "commit": "git add . && czg",
+    "czg": "czg",
     "start": "next start",
     "lint:lint-staged": "lint-staged",
     "lint": "eslint app --fix --ext .ts,.tsx,.js,.jsx --max-warnings 0",
