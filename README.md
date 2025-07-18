@@ -7,7 +7,7 @@ npx create-next-app@latest
 # 配置 Prettier
 
 ```bash
-npm i eslint-plugin-prettier prettier eslint-config-prettier -D
+pnpm i eslint-plugin-prettier prettier eslint-config-prettier -D
 ```
 
 ## 修改 eslint.config.mjs
@@ -88,7 +88,7 @@ Prettier插件配置Print Width => 120
 ## Prettier Plugins
 
 ```bash
-npm i -D prettier-plugin-organize-imports prettier-plugin-tailwindcss
+pnpm i -D prettier-plugin-organize-imports prettier-plugin-tailwindcss
 ```
 
 修改 `.prettierrc`
@@ -104,7 +104,7 @@ npm i -D prettier-plugin-organize-imports prettier-plugin-tailwindcss
 # 配置 Git hooks
 
 ```bash
-npm i -D husky lint-staged @commitlint/cli @commitlint/config-conventional czg cz-git
+pnpm i -D husky lint-staged @commitlint/cli @commitlint/config-conventional czg cz-git
 ```
 
 - run
@@ -218,13 +218,14 @@ module.exports = {
 ## package.json
 
 - 配置 lint-staged
+- 添加commit命令
 
 ```json
 ...
 "scripts": {
   "commit": "git add . && czg",
   "czg": "czg",
-  "lint:lint-staged": "lint-staged"  
+  "lint:lint-staged": "lint-staged"
 }
 ...
 "lint-staged": {
@@ -234,4 +235,27 @@ module.exports = {
   ]
 }
 ...
+```
+
+# 工具类
+
+## Alt+Shift+鼠标选中dom 打开Vscode
+
+```bash
+pnpm i code-inspector-plugin -D
+```
+
+next.config.ts
+
+```js
+webpack: (config, { dev, isServer }) => {
+  config.plugins.push(codeInspectorPlugin({ bundler: 'webpack' }));
+  return config;
+},
+```
+
+## shadcn UI
+```bash
+pnpm dlx shadcn@latest init
+pnpm dlx shadcn@latest add button
 ```

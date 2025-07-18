@@ -1,6 +1,6 @@
+import { FlatCompat } from '@eslint/eslintrc';
 import { dirname } from 'path';
 import { fileURLToPath } from 'url';
-import { FlatCompat } from '@eslint/eslintrc';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -15,6 +15,7 @@ const eslintConfig = [
   ...compat.plugins('prettier'),
   {
     rules: {
+      '@typescript-eslint/no-require-imports': 'off', //允许require
       '@typescript-eslint/no-explicit-any': ['off'], //允许使用any
       '@typescript-eslint/ban-ts-comment': 'off', //允许使用@ts-ignore
       '@typescript-eslint/no-non-null-assertion': 'off', //允许使用非空断言
