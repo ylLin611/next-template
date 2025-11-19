@@ -264,3 +264,6 @@ pnpm dlx shadcn@latest add button
 ```bash
 pnpm install next-intl
 ```
+
+## dark mode
+- [shadcn dark mode](https://ui.shadcn.com/docs/dark-mode/next)

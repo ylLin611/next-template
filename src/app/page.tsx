@@ -1,13 +1,22 @@
+'use client';
+
+import { Button } from '@/components/ui/button';
 import { useTranslations } from 'next-intl';
+import { useTheme } from 'next-themes';
 import Image from 'next/image';
 
 export default function Home() {
   const t = useTranslations('common');
+  const { theme, setTheme } = useTheme();
 
+  const handleThemeChange = () => {
+    setTheme(theme === 'light' ? 'dark' : 'light');
+  };
   return (
     <div className="grid min-h-screen grid-rows-[20px_1fr_20px] items-center justify-items-center gap-16 p-8 pb-20 font-sans sm:p-20">
       <main className="row-start-2 flex flex-col items-center gap-[32px] sm:items-start">
         <Image className="dark:invert" src="/next.svg" alt="Next.js logo" width={180} height={38} priority />
+        <Button onClick={handleThemeChange}>切换主题</Button>
         <ol className="list-inside list-decimal text-center font-mono text-sm/6 sm:text-left">
           <li className="mb-2 tracking-[-.01em]">
             Get started by editing{' '}
@@ -16,7 +25,6 @@ export default function Home() {
             </code>
             .
           </li>
-          <li className="tracking-[-.01em]">Save and see your changes instantly.</li>
           <li className="tracking-[-.01em]">国际化: {t('hello')}</li>
         </ol>
 
