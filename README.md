@@ -259,3 +259,8 @@ webpack: (config, { dev, isServer }) => {
 pnpm dlx shadcn@latest init
 pnpm dlx shadcn@latest add button
 ```
+
+## 国际化
+```bash
+pnpm install next-intl
+```
