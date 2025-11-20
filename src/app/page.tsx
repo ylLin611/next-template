@@ -1,29 +1,19 @@
-'use client';
-
-import { Button } from '@/components/ui/button';
-import { animateThemeSwitch } from '@/lib/utils';
+import { ThemeToggler } from '@/components/theme-toggler';
 import { useTranslations } from 'next-intl';
-import { useTheme } from 'next-themes';
 import Image from 'next/image';
 
 export default function Home() {
   const t = useTranslations('common');
-  const { theme, setTheme } = useTheme();
 
-  const handleThemeChange = (e: React.MouseEvent<HTMLButtonElement>) => {
-    animateThemeSwitch(e.nativeEvent, () => {
-      setTheme(theme === 'dark' ? 'light' : 'dark');
-    });
-  };
   return (
     <div className="grid min-h-screen grid-rows-[20px_1fr_20px] items-center justify-items-center gap-16 p-8 pb-20 font-sans sm:p-20">
-      <main className="row-start-2 flex flex-col items-center gap-[32px] sm:items-start">
+      <main className="row-start-2 flex flex-col items-center gap-8 sm:items-start">
         <Image className="dark:invert" src="/next.svg" alt="Next.js logo" width={180} height={38} priority />
-        <Button onClick={handleThemeChange}>切换主题</Button>
+        <ThemeToggler />
         <ol className="list-inside list-decimal text-center font-mono text-sm/6 sm:text-left">
           <li className="mb-2 tracking-[-.01em]">
             Get started by editing{' '}
-            <code className="rounded bg-black/[.05] px-1 py-0.5 font-mono font-semibold dark:bg-white/[.06]">
+            <code className="rounded bg-black/5 px-1 py-0.5 font-mono font-semibold dark:bg-white/6">
               src/app/page.tsx
             </code>
             .
@@ -41,7 +31,7 @@ export default function Home() {
             发布到Vercel
           </a>
           <a
-            className="flex h-10 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-4 text-sm font-medium transition-colors hover:border-transparent hover:bg-[#f2f2f2] sm:h-12 sm:w-auto sm:px-5 sm:text-base md:w-[158px] dark:border-white/[.145] dark:hover:bg-[#1a1a1a]"
+            className="flex h-10 w-full items-center justify-center rounded-full border border-solid border-black/8 px-4 text-sm font-medium transition-colors hover:border-transparent hover:bg-[#f2f2f2] sm:h-12 sm:w-auto sm:px-5 sm:text-base md:w-[158px] dark:border-white/[.145] dark:hover:bg-[#1a1a1a]"
             href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
             target="_blank"
             rel="noopener noreferrer"
