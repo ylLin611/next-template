@@ -120,3 +120,15 @@
     @apply bg-background text-foreground;
   }
 }
+
+::view-transition-group(root),
+::view-transition-image-pair(root),
+::view-transition-new(root),
+::view-transition-old(root) {
+  animation: none !important;
+  contain: paint !important;
+}
+
+html.light::view-transition-old(root) {
+  z-index: 100;
+}

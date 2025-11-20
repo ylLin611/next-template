@@ -1,6 +1,7 @@
 'use client';
 
 import { Button } from '@/components/ui/button';
+import { animateThemeSwitch } from '@/lib/utils';
 import { useTranslations } from 'next-intl';
 import { useTheme } from 'next-themes';
 import Image from 'next/image';
@@ -9,8 +10,10 @@ export default function Home() {
   const t = useTranslations('common');
   const { theme, setTheme } = useTheme();
 
-  const handleThemeChange = () => {
-    setTheme(theme === 'light' ? 'dark' : 'light');
+  const handleThemeChange = (e: React.MouseEvent<HTMLButtonElement>) => {
+    animateThemeSwitch(e.nativeEvent, () => {
+      setTheme(theme === 'dark' ? 'light' : 'dark');
+    });
   };
   return (
     <div className="grid min-h-screen grid-rows-[20px_1fr_20px] items-center justify-items-center gap-16 p-8 pb-20 font-sans sm:p-20">
