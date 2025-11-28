@@ -4,6 +4,7 @@ import type { Metadata } from 'next';
 import { NextIntlClientProvider } from 'next-intl';
 import { getLocale } from 'next-intl/server';
 import { Geist, Geist_Mono } from 'next/font/google';
+import { Toaster } from 'sonner';
 import './globals.css';
 
 const geistSans = Geist({
@@ -39,6 +40,7 @@ export default async function RootLayout({
               disableTransitionOnChange
             >
               {children}
+              <Toaster></Toaster>
             </ThemeProvider>
           </NextIntlClientProvider>
         </TRPCReactProvider>
