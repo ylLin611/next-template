@@ -1,4 +1,5 @@
 import { ThemeProvider } from '@/components/theme-provider';
+import { TRPCReactProvider } from '@/trpc/client';
 import type { Metadata } from 'next';
 import { NextIntlClientProvider } from 'next-intl';
 import { getLocale } from 'next-intl/server';
@@ -29,16 +30,18 @@ export default async function RootLayout({
   return (
     <html lang={locale}>
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
-        <NextIntlClientProvider>
-          <ThemeProvider
-            attribute={['data-theme', 'class']}
-            defaultTheme="system"
-            enableSystem
-            disableTransitionOnChange
-          >
-            {children}
-          </ThemeProvider>
-        </NextIntlClientProvider>
+        <TRPCReactProvider>
+          <NextIntlClientProvider>
+            <ThemeProvider
+              attribute={['data-theme', 'class']}
+              defaultTheme="system"
+              enableSystem
+              disableTransitionOnChange
+            >
+              {children}
+            </ThemeProvider>
+          </NextIntlClientProvider>
+        </TRPCReactProvider>
       </body>
     </html>
   );
