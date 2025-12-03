@@ -20,7 +20,7 @@ e2b template build --name xxx --cmd xxx
 
 注意：如果有 --cmd 需要在CMD下执行，如果是GIT BASH，路径会找GIT安装路径
 
-## 发布
+## 发布(依赖docker)
 
 ```bash
 e2b template publish -t team_Id
