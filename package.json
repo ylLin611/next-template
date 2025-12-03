@@ -6,6 +6,8 @@
     "dev": "next dev",
     "inngest": "npx inngest-cli@latest dev",
     "prisma": "npx prisma migrate dev",
+    "prisma:generate": "npx prisma generate",
+    "prisma:reset": "npx prisma migrate reset",
     "prisma:studio": "npx prisma studio",
     "build": "next build",
     "start": "next start",

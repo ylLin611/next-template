@@ -3,37 +3,34 @@ import { prisma } from '@/lib/db';
 import { baseProcedure, createTRPCRouter } from '@/trpc/init';
 import z from 'zod';
 
-export const messageRouter = createTRPCRouter({
+export const projectRouter = createTRPCRouter({
   list: baseProcedure.query(async () => {
-    const messages = await prisma.message.findMany({
+    const projects = await prisma.project.findMany({
       orderBy: {
         updatedAt: 'desc',
       },
-      include: {
-        fragment: true,
-      },
     });
-    return messages;
+    return projects;
   }),
-  // 有project之后，这个方法不会被调用了
   create: baseProcedure
     .input(
       z.object({
         value: z.string().min(1, {
           message: 'message不能为空',
         }),
-        projectId: z.string().min(1, {
-          message: 'projectId不能为空',
-        }),
       }),
     )
     .mutation(async ({ input }) => {
-      const newMessage = await prisma.message.create({
+      const newProject = await prisma.project.create({
         data: {
-          content: input.value,
-          role: 'USER',
-          type: 'RESULT',
-          projectId: input.projectId,
+          name: '测试', // TODO
+          messages: {
+            create: {
+              content: input.value,
+              role: 'USER',
+              type: 'RESULT',
+            },
+          },
         },
       });
 
@@ -41,10 +38,10 @@ export const messageRouter = createTRPCRouter({
         name: 'code-agent/run',
         data: {
           value: input.value,
-          projectId: input.projectId,
+          projectId: newProject.id,
         },
       });
 
-      return newMessage;
+      return newProject;
     }),
 });

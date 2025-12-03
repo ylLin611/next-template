@@ -105,7 +105,7 @@ export const codeAgentFunction = inngest.createFunction(
             return step?.run('readFiles', async () => {
               try {
                 const sandbox = await getSandbox(sandboxId);
-                const contents = [];
+                const contents: { path: string; content: string }[] = [];
                 for (const file of files) {
                   const content = await sandbox.files.read(file);
                   contents.push({ path: file, content });
@@ -158,6 +158,7 @@ export const codeAgentFunction = inngest.createFunction(
       if (isError) {
         return await prisma.message.create({
           data: {
+            projectId: event.data.projectId,
             content: 'Something is wrong, please tru again！',
             type: 'ERROR',
             role: 'ASSISTANT',
@@ -166,6 +167,7 @@ export const codeAgentFunction = inngest.createFunction(
       }
       return await prisma.message.create({
         data: {
+          projectId: event.data.projectId,
           content: result.state.data.summary,
           type: 'RESULT',
           role: 'ASSISTANT',
