@@ -1,7 +1,5 @@
-import { ThemeProvider } from '@/components/theme-provider';
 import { TRPCReactProvider } from '@/trpc/client';
 import type { Metadata } from 'next';
-import { NextIntlClientProvider } from 'next-intl';
 import { getLocale } from 'next-intl/server';
 import { Geist, Geist_Mono } from 'next/font/google';
 import { Toaster } from 'sonner';
@@ -32,17 +30,17 @@ export default async function RootLayout({
     <html lang={locale}>
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
         <TRPCReactProvider>
-          <NextIntlClientProvider>
+          {/* <NextIntlClientProvider>
             <ThemeProvider
               attribute={['data-theme', 'class']}
               defaultTheme="system"
               enableSystem
               disableTransitionOnChange
-            >
-              {children}
-              <Toaster></Toaster>
-            </ThemeProvider>
-          </NextIntlClientProvider>
+            > */}
+          {children}
+          <Toaster></Toaster>
+          {/* </ThemeProvider>
+          </NextIntlClientProvider> */}
         </TRPCReactProvider>
       </body>
     </html>

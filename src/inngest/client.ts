@@ -1,4 +1,4 @@
 import { Inngest } from 'inngest';
 
 // Create a client to send and receive events
-export const inngest = new Inngest({ id: 'v0-copy' });
+export const inngest = new Inngest({ id: 'v0-copy', telemetry: { enabled: false } });

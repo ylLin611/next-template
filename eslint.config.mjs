@@ -15,6 +15,7 @@ const eslintConfig = [
   ...compat.plugins('prettier'),
   {
     rules: {
+      '@typescript-eslint/no-unused-vars': 'off',
       '@typescript-eslint/no-require-imports': 'off', //允许require
       '@typescript-eslint/no-explicit-any': ['off'], //允许使用any
       '@typescript-eslint/ban-ts-comment': 'off', //允许使用@ts-ignore

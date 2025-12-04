@@ -1,6 +1,7 @@
 import { inngest } from '@/inngest/client';
 import { prisma } from '@/lib/db';
 import { baseProcedure, createTRPCRouter } from '@/trpc/init';
+import { TRPCError } from '@trpc/server';
 import z from 'zod';
 
 export const projectRouter = createTRPCRouter({
@@ -12,6 +13,28 @@ export const projectRouter = createTRPCRouter({
     });
     return projects;
   }),
+  getOne: baseProcedure
+    .input(
+      z.object({
+        id: z.string().min(1, {
+          message: 'id不能为空',
+        }),
+      }),
+    )
+    .query(async ({ input }) => {
+      const existingProject = await prisma.project.findUnique({
+        where: {
+          id: input.id,
+        },
+      });
+      if (!existingProject) {
+        throw new TRPCError({
+          code: 'NOT_FOUND',
+          message: '项目不存在',
+        });
+      }
+      return existingProject;
+    }),
   create: baseProcedure
     .input(
       z.object({
@@ -23,7 +46,7 @@ export const projectRouter = createTRPCRouter({
     .mutation(async ({ input }) => {
       const newProject = await prisma.project.create({
         data: {
-          name: '测试', // TODO
+          name: '测试', // TODO,AI生成项目名称
           messages: {
             create: {
               content: input.value,
