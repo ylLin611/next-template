@@ -3,6 +3,7 @@ import { Fragment } from '@/generated/prisma/client';
 import { MessageRole, MessageType } from '@/generated/prisma/enums';
 import { cn } from '@/lib/utils';
 import dayjs from 'dayjs';
+import { ChevronRightIcon, Code2Icon } from 'lucide-react';
 import Image from 'next/image';
 
 interface UserMessageProps {
@@ -57,7 +58,21 @@ interface FragmentCardProps {
   onFragmentClick: (fragment: Fragment) => void;
 }
 const FragmentCard = ({ fragment, isActiveFragment, onFragmentClick }: FragmentCardProps) => {
-  return <button className={cn('flex items-start text-start')}></button>;
+  return (
+    <button
+      className={cn(
+        'bg-muted hover:bg-secondary flex w-fit items-center gap-2 rounded-lg border p-3 text-start transition-colors',
+        isActiveFragment && 'bg-primary text-primary-foreground border-primary hover:bg-primary',
+      )}
+      onClick={() => onFragmentClick(fragment)}
+    >
+      <Code2Icon className="mt-0.5 size-4" />
+      <span className="text-sm">{fragment.title}</span>
+      <div>
+        <ChevronRightIcon className="size-4" />
+      </div>
+    </button>
+  );
 };
 
 interface Props {

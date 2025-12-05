@@ -132,3 +132,7 @@
 html.light::view-transition-old(root) {
   z-index: 100;
 }
+
+button {
+  cursor: pointer;
+}
