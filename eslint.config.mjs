@@ -1,27 +1,19 @@
-import { FlatCompat } from '@eslint/eslintrc';
-import { dirname } from 'path';
-import { fileURLToPath } from 'url';
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
-
-const compat = new FlatCompat({
-  baseDirectory: __dirname,
-});
+import nextCoreWebVitals from 'eslint-config-next/core-web-vitals';
+import nextTypeScript from 'eslint-config-next/typescript';
+import prettierRecommended from 'eslint-plugin-prettier/recommended';
 
 const eslintConfig = [
-  ...compat.extends('next/core-web-vitals', 'next/typescript'),
-  ...compat.extends('plugin:prettier/recommended', 'eslint-config-prettier'),
-  ...compat.plugins('prettier'),
+  ...nextCoreWebVitals,
+  ...nextTypeScript,
+  prettierRecommended,
   {
     rules: {
-      '@typescript-eslint/no-require-imports': 'off', //允许require
-      '@typescript-eslint/no-explicit-any': ['off'], //允许使用any
-      '@typescript-eslint/ban-ts-comment': 'off', //允许使用@ts-ignore
-      '@typescript-eslint/no-non-null-assertion': 'off', //允许使用非空断言
-      '@typescript-eslint/no-var-requires': 'off', //允许使用CommonJS的写法
+      '@typescript-eslint/no-require-imports': 'off',
+      '@typescript-eslint/no-explicit-any': 'off',
+      '@typescript-eslint/ban-ts-comment': 'off',
+      '@typescript-eslint/no-non-null-assertion': 'off',
+      '@typescript-eslint/no-var-requires': 'off',
       'no-console': [
-        //提交时不允许有console.log
         'warn',
         {
           allow: ['warn', 'error'],

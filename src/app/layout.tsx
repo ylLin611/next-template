@@ -1,4 +1,4 @@
-import { ThemeProvider } from '@/components/theme-provider';
+import { ThemeProvider } from '@/providers/theme-provider';
 import type { Metadata } from 'next';
 import { NextIntlClientProvider } from 'next-intl';
 import { getLocale } from 'next-intl/server';
@@ -27,7 +27,7 @@ export default async function RootLayout({
 }>) {
   const locale = await getLocale();
   return (
-    <html lang={locale}>
+    <html lang={locale} suppressHydrationWarning>
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
         <NextIntlClientProvider>
           <ThemeProvider
