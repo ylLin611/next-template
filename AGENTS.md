@@ -48,3 +48,4 @@
 允许的提交类型包括：`feat`、`fix`、`docs`、`style`、`refactor`、`perf`、`test`、`build`、`ci`、`chore`、`revert`、`wip`、`workflow`、`types`、`release`。
 
 PR 建议包含：变更说明、关联任务或 Issue、UI 变更截图（如有）、以及 i18n/主题影响说明（如有）。
+

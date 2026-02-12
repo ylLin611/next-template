@@ -1,5 +1,5 @@
 {
-  "i18n-ally.localesPaths": [
-    "messages"
-  ]
+  "i18n-ally.localesPaths": ["messages"],
+  "files.encoding": "utf8",
+  "files.autoGuessEncoding": true
 }
